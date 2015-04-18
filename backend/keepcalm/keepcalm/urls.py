@@ -3,8 +3,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 
-admin.autodiscover()
-
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'keepcalm.views.home', name='home'),
