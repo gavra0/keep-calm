@@ -4,7 +4,7 @@
  <title>Keep-Calm</title>
  <link href="/http://gavra0.github.io/keep-calm/atom.xml" rel="self"/>
  <link href="/http://gavra0.github.io/keep-calm/"/>
- <updated>2015-04-18T14:36:10+02:00</updated>
+ <updated>2015-04-18T14:37:26+02:00</updated>
  <id>/</id>
  <author>
    <name>Ivan Gavrilovic / Tiziano Signo</name>
@@ -17,11 +17,11 @@
    <link href="/http://gavra0.github.io/keep-calm//2015/04/18/home/"/>
    <updated>2015-04-18T00:00:00+02:00</updated>
    <id>//2015/04/18/home</id>
-   <content type="html">&lt;div class=&quot;message&quot;&gt;
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
-&lt;/div&gt;
+   <content type="html">&lt;p&gt;&lt;img src=&quot;http://gavra0.github.io/keep-calm/assets/keep-calm.png&quot; alt=&quot;Crowdsourced anti-bullying tool&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://gavra0.github.io/keep-calm/assets/keep-calm.png&quot; alt=&quot;My helpful screenshot&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;message&quot;&gt;
+  Crowdsourced anti-bullying tool.
+&lt;/div&gt;
 </content>
  </entry>
  
