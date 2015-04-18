@@ -9,6 +9,9 @@ class SupportedSiteSerializer(serializers.ModelSerializer):
 		fields = ('name', 'base_url', )
 
 class UserSerializer(serializers.ModelSerializer):
+	positive = serializers.IntegerField(source='positive_reports')
+	negative = serializers.IntegerField(source='negative_reports')
+
 	class Meta:
 		model = User
-		fields = ('site', 'username', )
+		fields = ('username', 'positive', 'negative', )

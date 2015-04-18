@@ -59,4 +59,16 @@ class UserNegativeReport(APIView):
 
 class UserCheck(APIView):
 	def post(self, request, format=None):
-		return Response(operation_success())
+		site = request.DATA.get('site', None)
+		userlist = request.DATA.get('users', '')
+
+		supported_site = get_supported_site(site)
+		users = userlist.split(',')
+
+		check_users = User.objects.filter(site=supported_site, username__in=users)
+		serializer = UserSerializer(check_users, many=True)
+
+		response_data = {
+			'result': serializer.data
+		}
+		return Response(response_data)
