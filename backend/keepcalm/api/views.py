@@ -12,7 +12,7 @@ from core.utils import get_supported_site, get_user, report_negative, report_pos
 from api.serializers import SupportedSiteSerializer, UserSerializer
 
 def operation_failure(msg=''):
-	return "{ 'success': false, 'message': " + str(msg) + "}"
+	return "{ 'success': false, 'message': " + str(msg) + " }"
 
 def operation_success():
 	return "{ 'success': true }"
