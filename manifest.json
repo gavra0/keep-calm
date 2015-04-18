@@ -7,7 +7,7 @@
     "contextMenus",
     "webRequest",
     "*://*.twitter.com/",
-    "http://thesigno.com/"
+    "https://thesigno.com/"
   ],
   "icons": {
     "16": "icon-16.png",
@@ -26,5 +26,6 @@
       "js": ["background.js"],
       "run_at": "document_end"
     }
-  ]
+  ],
+  "content_security_policy": "script-src 'self'; object-src 'self'"
 }

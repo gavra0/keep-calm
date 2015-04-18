@@ -1,15 +1,17 @@
-var SERVER_URL = "http://thesigno.com:8000/";
+var SERVER_URL = "https://thesigno.com/";
 var REPORT_URL = SERVER_URL + "api/v1/report/";
 
 var TWITTER = "https://twitter.com";
 var FACEBOOK = "https://facebook.com";
 
-
+var selectionAction = function (info, tab){
+    report(info.pageUrl, info.linkUrl)
+};
 
 // Create contextual menu item(s)
 var contexts = ["link"];
 var menuTitles = ["Report?"];
-var listeners = [report];
+var listeners = [selectionAction];
 for (var i = 0; i < contexts.length; i++) {
     var context = contexts[i];
     var title = menuTitles[i];
@@ -47,15 +49,15 @@ function report(url, username){
 var reportHandler = function () {
     return{
         success: function(){
-
+            console.log("reported successfully");
         },
         failure: function(){
-
+            console.log("report failed");
         }
     }
 }();
 
-//    Handle ajax data loading:
+// -- Handle ajax data loading:
 // 1. When ajax request is triggered to load new data we will attach listener
 // 2. onCompleted is triggered when the request has been processed
 // 3. send the message to the content script to crawl the DOM
@@ -67,13 +69,14 @@ chrome.webRequest.onCompleted.addListener(
             else if (details.url.indexOf("facebook.com") != -1)
                 sendMessage(FACEBOOK);
     },
-    {urls: ["https://twitter.com/i/timeline?include_available_features*"]},
+    {urls: ["https://twitter.com/i/timeline?include_available_features*",
+           "https://twitter.com/i/expanded/batch/*"]},
     []);
 
 function sendMessage(){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {startScanning: true, site: TWITTER}, function(response) {
-            console.log(response.farewell);
+            console.log(response.messsage);
         });
     });
 }
