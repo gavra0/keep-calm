@@ -62,7 +62,7 @@ WSGI_APPLICATION = 'keepcalm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'local.db'),
+        'NAME': os.path.join(BASE_DIR, 'keepcalm.db'),
     }
 }
 
