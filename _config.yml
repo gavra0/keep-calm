@@ -5,13 +5,11 @@ relative_permalinks: true
 # Setup
 title:            Keep-Calm
 tagline:          Crowdsourced anti-bullying tool
-url:              http://getpoole.com
+url:              http://gavra0.github.io/keep-calm
 paginate:         1
 baseurl:          /
 author:
-  name:           Mark Otto
-  url:            https://twitter.com/mdo
-  email:          markdotto@gmail.com
+  name:           Ivan Gavrilovic / Tiziano Signo
 
 # Custom vars
 version:          1.0.0
