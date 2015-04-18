@@ -1,0 +1,5 @@
+# ignore python compiled
+*.pyc
+
+# ignore local db
+*.db
