@@ -2,9 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Keep-Calm</title>
- <link href="//keep-calmatom.xml" rel="self"/>
- <link href="//keep-calm"/>
- <updated>2015-04-18T14:32:47+02:00</updated>
+ <link href="/http://gavra0.github.io/keep-calm/atom.xml" rel="self"/>
+ <link href="/http://gavra0.github.io/keep-calm/"/>
+ <updated>2015-04-18T14:36:10+02:00</updated>
  <id>/</id>
  <author>
    <name>Ivan Gavrilovic / Tiziano Signo</name>
@@ -14,14 +14,14 @@
  
  <entry>
    <title>Home</title>
-   <link href="//keep-calm/2015/04/18/home/"/>
+   <link href="/http://gavra0.github.io/keep-calm//2015/04/18/home/"/>
    <updated>2015-04-18T00:00:00+02:00</updated>
    <id>//2015/04/18/home</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;//assets/keep-calm.png&quot; alt=&quot;My helpful screenshot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://gavra0.github.io/keep-calm/assets/keep-calm.png&quot; alt=&quot;My helpful screenshot&quot; /&gt;&lt;/p&gt;
 </content>
  </entry>
  
