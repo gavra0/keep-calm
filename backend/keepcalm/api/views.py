@@ -7,18 +7,15 @@ from rest_framework import status
 from rest_framework.reverse import reverse
 
 from core.models import SupportedSite, User
+from core.utils import get_supported_site, get_user, report_negative, report_positive
 
 from api.serializers import SupportedSiteSerializer, UserSerializer
 
-import re
+def operation_failure(msg=''):
+	return "{ 'success': false, 'message': " + str(msg) + "}"
 
-def extract_domain(url):
-	base_domain = re.search("(?P<url>https?://[^\s\/]+)", url).group('url')
-	if base_domain.endswith('twitter.com'):
-		return 'twitter'
-	else:
-		return None # invalid
-
+def operation_success():
+	return "{ 'success': true }"
 
 @api_view(('GET', ))
 def api_root(request, format=None):
@@ -44,10 +41,22 @@ class UserList(APIView):
 		serializer = UserSerializer(twitter_users, many=True)
 		return Response(serializer.data)
 
-class UserReport(APIView):
+class UserNegativeReport(APIView):
 	def post(self, request, format=None):
-		return
+		site = request.DATA.get('site', None)
+		username = request.DATA.get('username', None)
+
+		supported_site = get_supported_site(site)
+		user = get_user(supported_site, username)
+
+		if user:
+			success, msg = report_negative(user)
+			response_data = operation_success() if success else operation_failure(msg)
+		else:
+			response_data = operation_failure('Invalid site or username')
+
+		return Response(response_data)
 
 class UserCheck(APIView):
 	def post(self, request, format=None):
-		return
+		return Response(operation_success())
