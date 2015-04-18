@@ -1,0 +1,10 @@
+{
+  "name": "Keep calm",
+  "description": "Crowdsourced anti-bullying tool",
+  "version": "2.0",
+  "permissions": [
+    "activeTab",
+    "contextMenus"
+  ],
+  "manifest_version": 2
+}
