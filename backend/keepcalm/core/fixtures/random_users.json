@@ -1,0 +1,12 @@
+[
+  {
+    "model": "core.User",
+    "pk": 1,
+    "fields": {
+      "username": "gavra0",
+      "site": 1,
+      "positive_reports": 0,
+      "negative_reports": 0
+    }
+  }
+]

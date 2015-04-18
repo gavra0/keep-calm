@@ -1,0 +1,10 @@
+[
+  {
+    "model": "core.SupportedSite",
+    "pk": 1,
+    "fields": {
+      "name": "twitter",
+      "base_url": "twitter.com"
+    }
+  }
+]
