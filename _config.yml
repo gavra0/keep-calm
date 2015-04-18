@@ -5,9 +5,9 @@ relative_permalinks: true
 # Setup
 title:            Keep-Calm
 tagline:          Crowdsourced anti-bullying tool
-url:              /keep-calm/
+url:              /
 paginate:         1
-baseurl:          http://gavra0.github.io/
+baseurl:          http://gavra0.github.io/keep-calm
 author:
   name:           Ivan Gavrilovic / Tiziano Signo
 

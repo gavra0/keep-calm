@@ -4,7 +4,7 @@
  <title>Keep-Calm</title>
  <link href="//keep-calmatom.xml" rel="self"/>
  <link href="//keep-calm"/>
- <updated>2015-04-18T14:25:48+02:00</updated>
+ <updated>2015-04-18T14:32:47+02:00</updated>
  <id>/</id>
  <author>
    <name>Ivan Gavrilovic / Tiziano Signo</name>
@@ -21,7 +21,7 @@
   Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
 &lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;//assets/keep-calm.jpg&quot; alt=&quot;My helpful screenshot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/keep-calm.png&quot; alt=&quot;My helpful screenshot&quot; /&gt;&lt;/p&gt;
 </content>
  </entry>
  
