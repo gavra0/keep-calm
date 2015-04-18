@@ -4,7 +4,7 @@
  <title>Keep-Calm</title>
  <link href="/http://gavra0.github.io/keep-calm/atom.xml" rel="self"/>
  <link href="/http://gavra0.github.io/keep-calm/"/>
- <updated>2015-04-18T14:43:12+02:00</updated>
+ <updated>2015-04-18T14:59:04+02:00</updated>
  <id>/</id>
  <author>
    <name>Ivan Gavrilovic / Tiziano Signo</name>
@@ -20,7 +20,8 @@
    <content type="html">&lt;p&gt;&lt;img src=&quot;http://gavra0.github.io/keep-calm/assets/keep-calm.png&quot; alt=&quot;Crowdsourced anti-bullying tool&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;message&quot;&gt;
-  Crowdsourced anti-bullying tool.
+  Chrome extension that allows you to report harmful users, and to help the community feel more safe
+  while browsing the Internet.
 &lt;/div&gt;
 </content>
  </entry>
