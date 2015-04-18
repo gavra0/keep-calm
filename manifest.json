@@ -4,7 +4,27 @@
   "version": "2.0",
   "permissions": [
     "activeTab",
-    "contextMenus"
+    "contextMenus",
+    "webRequest",
+    "*://*.twitter.com/",
+    "http://thesigno.com/"
   ],
-  "manifest_version": 2
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["menu.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.twitter.com/*"
+      ],
+      "js": ["background.js"],
+      "run_at": "document_end"
+    }
+  ]
 }
