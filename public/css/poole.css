@@ -443,3 +443,22 @@ a.pagination-item:hover {
 .message-home-2 {
     margin-top: 50px;
 }
+
+.message-download {
+    margin-top: 120px;
+    font-size: 32px;
+}
+
+.message-download a: hover {
+    text-decoration: none;
+}
+
+.message-download span {
+    margin-right: 10px;
+}
+
+.message-download img {
+    display: inline;
+    vertical-align: top;
+    margin: -5px 0 0 0;
+}
