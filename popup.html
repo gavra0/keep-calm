@@ -1,0 +1,35 @@
+
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+<head>
+    <title>Keep Calm - Crowdsourced Anti-Bullying tool</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: small;
+        }
+        #status {
+            /* avoid an excessively wide status text */
+            white-space: pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+<img src="images/sad2.png"/>
+<div id="status" style="text-align: center">
+    <a href="http://gavra0.github.io/keep-calm" target="_blank">Keep-Calm</a>
+    Crowdsourced anti-bullying tool
+    <p>Visit your <a href="https://twitter.com" target="_blank">twitter</a> to see how it works :)</p>
+</div>
+</body>
+</html>
+

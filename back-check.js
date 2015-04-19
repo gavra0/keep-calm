@@ -1,5 +1,3 @@
-debugger;
-
 var SERVER_URL = "https://thesigno.com/";
 var CHECK_URL = SERVER_URL + "api/v1/check/";
 
@@ -129,18 +127,21 @@ function updateDOM(usersToElems, result) {
             for (var k = 0; k < divElems.length; k++) {
                 if (negativeReview) {
                     if (divElems[k].querySelectorAll("[role=\"keep-calm-badge\"]").length == 0) {
+                        var repContainer = document.createElement("div");
+                        repContainer.setAttribute("role", "keep-calm-badge");
+                        repContainer.style.position = 'absolute';
+                        repContainer.style.top = '20%';
+                        repContainer.style.left = '40%';
+                        repContainer.style.zIndex = '999';
+                        repContainer.style.backgroundColor="#fff";
+                        repContainer.style.textAlign="center";
+                        repContainer.style.padding="5px";
+                        repContainer.style.opacity=1;
+
                         var repButton = divElems[k].querySelector("[role=\"keep-calm-reporter\"]");
 
                         var reportBadge = document.createElement("img");
                         reportBadge.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/sad2.png");
-                        reportBadge.setAttribute("role", "keep-calm-badge");
-
-                        reportBadge.style.position = 'absolute';
-                        reportBadge.style.top = '25%';
-                        reportBadge.style.left = '45%';
-                        reportBadge.style.width = '55px';
-                        reportBadge.style.height = '64px';
-                        reportBadge.style.zIndex = '1003';
 
                         // set the opacity on hover to disappear
                         var tweetContainer = repButton.parentNode.parentNode;
@@ -160,7 +161,28 @@ function updateDOM(usersToElems, result) {
                             };
                         }());
 
-                        tweetContainer.insertBefore(reportBadge, tweetContainer.firstChild);
+                        // left part
+                        repContainer.appendChild(reportBadge);
+
+                        // right part
+                        var sideDiv = document.createElement("div");
+                        sideDiv.style.height = "100%";
+                        sideDiv.style.display = "inline-block";
+                        sideDiv.style.paddingTop = "20px";
+                        sideDiv.style.paddingLeft = "8px";
+                        sideDiv.style.verticalAlign = "top";
+
+                        var viewElem = document.createElement("p");
+                        viewElem.appendChild(document.createTextNode("Viewed "+views+" time" + (views!=1?"s":"") + "."));
+                        sideDiv.appendChild(viewElem);
+
+                        var reportElem = document.createElement("p");
+                        reportElem.appendChild(document.createTextNode("Reported "+reports+" time" + (reports!=1?"s":"") + "."));
+                        sideDiv.appendChild(reportElem);
+
+                        repContainer.appendChild(sideDiv);
+
+                        tweetContainer.insertBefore(repContainer, tweetContainer.firstChild);
                     }
                 }
                 else

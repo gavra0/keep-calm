@@ -66,13 +66,14 @@ function addReportElement(stream) {
             reportButton.setAttribute("data-username", username);
             reportButton.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/normal.png");
             reportButton.setAttribute("role", "keep-calm-reporter");
+            reportButton.setAttribute("title", "Report this user");
 
             reportButton.style.position = 'relative';
             reportButton.style.top = '32px';
             reportButton.style.left = '-40px';
             reportButton.style.width = '20px';
             reportButton.style.height = '20px';
-            reportButton.style.zIndex = '1002';
+            reportButton.style.zIndex = '999';
 
             actionFooters[i].insertBefore(reportButton, actionFooters[i].firstChild);
 
