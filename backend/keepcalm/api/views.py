@@ -41,7 +41,7 @@ class UserList(APIView):
 		serializer = UserSerializer(twitter_users, many=True)
 		return Response(serializer.data)
 
-class UserNegativeReport(APIView):
+class UserReport(APIView):
 	def post(self, request, format=None):
 		site = request.DATA.get('site', None)
 		username = request.DATA.get('username', None)
