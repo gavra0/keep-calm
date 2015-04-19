@@ -4,7 +4,7 @@ relative_permalinks: true
 
 # Setup
 title:            Keep-Calm
-tagline:          Crowdsourced anti-bullying tool
+tagline:          Crowdsourced anti-bullying chrome extension
 url:              /
 paginate:         1
 baseurl:          http://gavra0.github.io/keep-calm/
