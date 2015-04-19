@@ -39,7 +39,7 @@ var reportHandler = function () {
             centerMessage.style.fontWeight = 'bold';
             centerMessage.style.fontSize = '1.5em';
             centerMessage.style.lineHeight = '180%';
-            centerMessage.appendChild(document.createTextNode("Thanks for reporting a bullying activity and helping the community."));
+            centerMessage.appendChild(document.createTextNode("Thanks for reporting and helping the community."));
 
             centerMessageCont.style.position = 'fixed';
             centerMessageCont.style.textAlign = 'center';
@@ -57,7 +57,7 @@ var reportHandler = function () {
             document.querySelector('body').appendChild(centerMessageCont);
             setTimeout(function () {
                 document.querySelector('body').removeChild(centerMessageCont);
-            }, 1600);
+            }, 1800);
 
 
             button.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/reported.png");
