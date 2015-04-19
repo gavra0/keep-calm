@@ -9,7 +9,7 @@ var FACEBOOK = "https://facebook.com";
  * @param url - website that the user is currently browsing
  * @param username - username that exhibited malicious behaviour
  */
-function report(url, username){
+function report(url, username, button){
     if (username == null || username.length == 0)
         return;
 
@@ -19,11 +19,11 @@ function report(url, username){
     x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     x.onload = function() {
         console.log("Successful load")
-        reportHandler.success();
+        reportHandler.success(button);
     };
     x.onerror = function() {
         console.log("Error occurred")
-        reportHandler.failure();
+        reportHandler.failure(button);
     };
     x.send("site="+url+"&username="+username);
 }
@@ -31,10 +31,18 @@ function report(url, username){
 // handler server reponse
 var reportHandler = function () {
     return{
-        success: function(){
+        success: function(button){
+            setTimeout(function() {
+                button.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/reported.png");
+                button.setAttribute("data-no-change", "yes");
+            }, 400);
             console.log("reported successfully");
         },
-        failure: function(){
+        failure: function(button){
+            setTimeout(function() {
+                button.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/reported.png");
+                button.setAttribute("data-no-change", "yes");
+            }, 400);
             console.log("report failed");
         }
     }
@@ -69,17 +77,22 @@ function addReportElement(stream) {
             actionFooters[i].insertBefore(reportButton, actionFooters[i].firstChild);
 
             reportButton.addEventListener("mouseover", function () {
-                this.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/hover.png");
+                if (this.getAttribute("data-no-change") !== "yes") {
+                    this.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/hover.png");
+                }
             });
             reportButton.addEventListener("mouseout", function () {
-                this.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/normal.png");
+                if (this.getAttribute("data-no-change") !== "yes") {
+                    this.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/normal.png");
+                }
             });
 
             reportButton.addEventListener("click", function(){
                 var uname = username;
                 return function(e){
                     e.stopPropagation();
-                    report(TWITTER, uname);
+                    this.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/loader.gif");
+                    report(TWITTER, uname, this);
                 };
             }());
         }
