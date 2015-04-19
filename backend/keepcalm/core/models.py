@@ -10,8 +10,8 @@ class SupportedSite(models.Model):
 class User(models.Model):
 	site = models.ForeignKey(SupportedSite)
 	username = models.CharField(max_length=20)
-	positive_reports = models.IntegerField(default=0)
-	negative_reports = models.IntegerField(default=0)
+	views = models.IntegerField(default=0)
+	reports = models.IntegerField(default=0)
 
 	def __unicode__(self):
 		return '%s on %s' % (self.username, self.site)

@@ -7,7 +7,7 @@ from rest_framework import status
 from rest_framework.reverse import reverse
 
 from core.models import SupportedSite, User
-from core.utils import get_supported_site, get_user, report_negative, report_positive
+from core.utils import get_supported_site, get_user, report_user, increment_views
 
 from api.serializers import SupportedSiteSerializer, UserSerializer
 
@@ -50,7 +50,7 @@ class UserReport(APIView):
 		user = get_user(supported_site, username)
 
 		if user:
-			success, msg = report_negative(user)
+			success, msg = report_user(user)
 			response_data = operation_success() if success else operation_failure(msg)
 		else:
 			response_data = operation_failure('Invalid site or username')
@@ -66,6 +66,7 @@ class UserCheck(APIView):
 		users = userlist.split(',')
 
 		check_users = User.objects.filter(site=supported_site, username__in=users)
+		increment_views(check_users)
 		serializer = UserSerializer(check_users, many=True)
 
 		response_data = {

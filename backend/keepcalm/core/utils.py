@@ -1,10 +1,12 @@
+from django.db.models import F
+
 from core.models import SupportedSite, User
 
 import re
 
 def get_supported_site(url):
 	""" Get the site object in the db if the site is supported """
-	
+
 	if url:
 		base_domain = re.search("(?P<url>https?://[^\s\/]+)", url).group('url')
 		supported_sites = SupportedSite.objects.all()
@@ -29,21 +31,20 @@ def get_user(site, username):
 	return obj
 
 
-def report_negative(user):
+def report_user(user):
 	""" Increment the negative reports of a user """
 	try:
-		user.negative_reports += 1
+		user.reports += 1
 		user.save()
 	except Exception as e:
-		return (False, e)
+		return (False, str(e))
 	return (True, '')
 
-
-def report_positive(user):
-	""" Increment the positive reports of a user """
+def increment_views(users):
+	""" Increment the views for a list of users, receive model object as input """
 	try:
-		user.positive_reports += 1
-		user.save()
+		users.update(views = F('views') + 1)
+		users.save()
 	except Exception as e:
-		return (False, e)
+		return (False, str(e))
 	return (True, '')
