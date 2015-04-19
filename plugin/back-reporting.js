@@ -32,6 +32,33 @@ function report(url, username, button){
 var reportHandler = function () {
     return{
         success: function(button){
+            var centerMessageCont = document.createElement("div");
+
+            var centerMessage = document.createElement("p");
+            centerMessage.style.color = '#ee9900';
+            centerMessage.style.fontWeight = 'bold';
+            centerMessage.style.fontSize = '1.5em';
+            centerMessage.style.lineHeight = '180%';
+            centerMessage.appendChild(document.createTextNode("Thanks for reporting a bullying activity and helping the community."));
+
+            centerMessageCont.style.position = 'fixed';
+            centerMessageCont.style.textAlign = 'center';
+            centerMessageCont.style.padding = '40px';
+            centerMessageCont.style.height = '120px';
+            centerMessageCont.style.width = '300px';
+            centerMessageCont.style.border = '2px #000000 solid';
+            centerMessageCont.style.left = '40%';
+            centerMessageCont.style.top = '35%';
+            centerMessageCont.style.backgroundColor = '#fff';
+            centerMessageCont.style.zIndex = 1003;
+
+            centerMessageCont.appendChild(centerMessage);
+
+            document.querySelector('body').appendChild(centerMessageCont);
+            /*setTimeout(function(){
+                document.querySelector('body').removeChild(centerMessageCont);
+            }, 2000);*/
+
             setTimeout(function() {
                 button.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/reported.png");
                 button.setAttribute("data-no-change", "yes");
