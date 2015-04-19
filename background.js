@@ -18,36 +18,21 @@ var checker = function () {
             var searchUrl = CHECK_URL;
             var x = new XMLHttpRequest();
             x.open('POST', searchUrl);
+            x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             x.onload = function () {
-                // fiddle with the elements
-                for (var key in userToElems) {
-                    var elemsToCheck = userToElems[key];
-                    for (var i = 0, tot = elemsToCheck.length; i < tot; i++) {
-                        var divElem = document.querySelector("[data-tweet-id=\""+elemsToCheck[i]+"\"]");
-                        if (Math.random() > 0.5) {
-                            divElem.style.backgroundColor = 'red'
-                        }
-                        else{
-                            divElem.style.backgroundColor = ''
-                        }
-                    }
+                // Parse and process the response from check API endpoint
+                var response = x.response;
+
+                if (!response || !response.result || response.result.length === 0) {
+                    console.log('No response from from our check API!');
+                    return;
                 }
+
+                // update the DOM with this new data
+                updateDOM(userToElems, response.responseData.result);
             };
             x.onerror = function () {
-                console.log("Error occurred")
-                // fiddle with the elements
-                for (var key in userToElems) {
-                    var elemsToCheck = userToElems[key];
-                    for (var i = 0, tot = elemsToCheck.length; i < tot; i++) {
-                        var divElem = document.querySelector("[data-tweet-id=\""+elemsToCheck[i]+"\"]");
-                        if (Math.random() > 0.5) {
-                            divElem.style.backgroundColor = 'red'
-                        }
-                        else{
-                            divElem.style.backgroundColor = ''
-                        }
-                    }
-                }
+                console.log("Error occurred when invoking check API");
             };
 
             var users = Object.keys(userToElems).join(",");
@@ -58,6 +43,39 @@ var checker = function () {
         }
     }
 }();
+
+function addReportElement(stream) {
+    var actionFooters = stream.querySelectorAll("div.stream-item-footer");
+
+    for (var i = 0, tot = actionFooters.length; i < tot; i++) {
+        // only create report button if one is not already present
+        if (actionFooters[i].querySelector('img[data-tweetId]') == null) {
+            var tweetId = actionFooters[i].parentNode.parentNode.getAttribute("data-tweet-id");
+            var username = actionFooters[i].parentNode.parentNode.getAttribute("data-screen-name");
+
+            var reportButton = document.createElement("img");
+            reportButton.setAttribute("data-tweetId", tweetId);
+            reportButton.setAttribute("data-username", username);
+            reportButton.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/normal.png");
+
+            reportButton.style.position = 'relative';
+            reportButton.style.top = '32px';
+            reportButton.style.left = '-32px';
+            reportButton.style.width = '20px';
+            reportButton.style.heigh = '20px';
+
+            actionFooters[i].insertBefore(reportButton, actionFooters[i].firstChild);
+
+            reportButton.addEventListener("mouseover", function () {
+                this.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/hover.png");
+            });
+            reportButton.addEventListener("mouseout", function () {
+                this.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/normal.png");
+            });
+        }
+    }
+}
+
 
 /**
  * Object containing logic for getting the currently displayed users on the platform.
@@ -70,6 +88,10 @@ var crawler = function () {
         tw: function () {
             // main user stream
             var stream = document.getElementById("stream-items-id");
+
+            addReportElement(stream);
+
+            // every component holding a tweet
             var htmlCol = stream.querySelectorAll(".tweet.js-stream-tweet");
             var liElems = [].slice.call(htmlCol);
 
@@ -87,6 +109,8 @@ var crawler = function () {
 
                 data[mapData[i].username].push(mapData[i].elemId)
             }
+
+            // lets check these users
             checker.tw(data);
         },
         fb: function () {
@@ -101,12 +125,36 @@ crawler.tw();
 // Receive messages from the background page
 // This will trigger the crawler once again, depending on the url where user is
 chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
+    function (request, sender, sendResponse) {
         if (request.startScanning) {
             if (request.site === TWITTER)
                 crawler.tw();
             else if (request.site == FACEBOOK)
 
-            sendResponse({message: "started crawling"});
+                sendResponse({message: "started crawling"});
         }
     });
+
+var THRESHOLD = 1;
+
+function updateDOM(usersToElems, result) {
+    for (var i = 0, tot = result.length; i < tot; i++) {
+        var tweetId = usersToElems[result.user];
+        var divElem = document.querySelector("[data-tweet-id=\"" + tweetId + "\"]");
+
+        var negative = result.negative;
+        var positive = result.positive;
+
+        if (reviewFunction(tweetId, positive, negative) > THRESHOLD) {
+            // change the look of the div element
+            divElem.style.opacity = 0.5;
+        }
+    }
+}
+
+function reviewFunction(tweetId, positive, negative) {
+    return {
+        tweetId: tweetId,
+        score: (negative - positive)
+    };
+}
