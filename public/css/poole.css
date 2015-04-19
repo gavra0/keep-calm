@@ -449,7 +449,7 @@ a.pagination-item:hover {
     font-size: 32px;
 }
 
-.message-download a: hover {
+a:hover {
     text-decoration: none;
 }
 
