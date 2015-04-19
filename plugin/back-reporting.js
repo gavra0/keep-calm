@@ -55,9 +55,9 @@ var reportHandler = function () {
             centerMessageCont.appendChild(centerMessage);
 
             document.querySelector('body').appendChild(centerMessageCont);
-            /*setTimeout(function(){
+            setTimeout(function(){
                 document.querySelector('body').removeChild(centerMessageCont);
-            }, 2000);*/
+            }, 1500);
 
             setTimeout(function() {
                 button.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/reported.png");
