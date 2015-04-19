@@ -23,7 +23,7 @@
       "matches": [
         "*://*.twitter.com/*"
       ],
-      "js": ["background.js"],
+      "js": ["back-reporting.js", "back-check.js"],
       "run_at": "document_end"
     }
   ],
