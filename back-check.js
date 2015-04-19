@@ -129,14 +129,14 @@ function updateDOM(usersToElems, result) {
                         var repButton = divElems[k].querySelector("[role=\"keep-calm-reporter\"]");
 
                         var reportBadge = document.createElement("img");
-                        reportBadge.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/sad.png");
+                        reportBadge.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/sad2.png");
                         reportBadge.setAttribute("role", "keep-calm-badge");
 
                         reportBadge.style.position = 'absolute';
-                        reportBadge.style.top = '40%';
-                        reportBadge.style.left = '50%';
+                        reportBadge.style.top = '25%';
+                        reportBadge.style.left = '45%';
                         reportBadge.style.width = '55px';
-                        reportBadge.style.heigth = '55px';
+                        reportBadge.style.height = '64px';
                         reportBadge.style.zIndex = '1003';
 
                         // set the opacity on hover to disappear

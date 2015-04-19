@@ -63,7 +63,7 @@ function addReportElement(stream) {
             reportButton.style.top = '32px';
             reportButton.style.left = '-40px';
             reportButton.style.width = '20px';
-            reportButton.style.heigth = '20px';
+            reportButton.style.height = '20px';
             reportButton.style.zIndex = '1002';
 
             actionFooters[i].insertBefore(reportButton, actionFooters[i].firstChild);
