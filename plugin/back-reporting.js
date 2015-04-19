@@ -9,7 +9,7 @@ var FACEBOOK = "https://facebook.com";
  * @param url - website that the user is currently browsing
  * @param username - username that exhibited malicious behaviour
  */
-function report(url, username, button){
+function report(url, username, button) {
     if (username == null || username.length == 0)
         return;
 
@@ -17,21 +17,21 @@ function report(url, username, button){
     var x = new XMLHttpRequest();
     x.open('POST', searchUrl);
     x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    x.onload = function() {
+    x.onload = function () {
         console.log("Successful load")
         reportHandler.success(button);
     };
-    x.onerror = function() {
+    x.onerror = function () {
         console.log("Error occurred")
         reportHandler.failure(button);
     };
-    x.send("site="+url+"&username="+username);
+    x.send("site=" + url + "&username=" + username);
 }
 
 // handler server reponse
 var reportHandler = function () {
-    return{
-        success: function(button){
+    return {
+        success: function (button) {
             var centerMessageCont = document.createElement("div");
 
             var centerMessage = document.createElement("p");
@@ -55,18 +55,18 @@ var reportHandler = function () {
             centerMessageCont.appendChild(centerMessage);
 
             document.querySelector('body').appendChild(centerMessageCont);
-            setTimeout(function(){
+            setTimeout(function () {
                 document.querySelector('body').removeChild(centerMessageCont);
-            }, 1500);
+            }, 2000);
 
-            setTimeout(function() {
-                button.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/reported.png");
-                button.setAttribute("data-no-change", "yes");
-            }, 400);
+
+            button.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/reported.png");
+            button.setAttribute("data-no-change", "yes");
+
             console.log("reported successfully");
         },
-        failure: function(button){
-            setTimeout(function() {
+        failure: function (button) {
+            setTimeout(function () {
                 button.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/reported.png");
                 button.setAttribute("data-no-change", "yes");
             }, 400);
@@ -115,9 +115,9 @@ function addReportElement(stream) {
                 }
             });
 
-            reportButton.addEventListener("click", function(){
+            reportButton.addEventListener("click", function () {
                 var uname = username;
-                return function(e){
+                return function (e) {
                     e.stopPropagation();
                     this.setAttribute("src", "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/images/loader.gif");
                     report(TWITTER, uname, this);
