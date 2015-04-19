@@ -428,3 +428,18 @@ a.pagination-item:hover {
     border-bottom-right-radius: 4px;
   }
 }
+
+.image-home {
+    display: inline-block;
+}
+
+.message-home {
+    display: inline-block;
+    width: 280px;
+    vertical-align: top;
+    margin-left: 20px;
+}
+
+.message-home-2 {
+    margin-top: 50px;
+}
